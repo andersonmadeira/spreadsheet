@@ -3,10 +3,10 @@ import styles from '../styles/CellHeader.module.scss'
 
 const CellHeader = ({ label }) => {
   return (
-    <td className={styles.cell_header} aria-label={label || undefined}>
+    <div className={styles.cell_header} aria-label={label || undefined}>
       {label}
-    </td>
+    </div>
   )
 }
 
-export default CellHeader
+export default React.memo(CellHeader)

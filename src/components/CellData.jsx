@@ -4,7 +4,7 @@ import styles from '../styles/CellData.module.scss'
 
 const CellData = ({ id, selected, value, handleSelection }) => {
   return (
-    <td
+    <div
       className={classnames(
         styles.cell_data,
         selected ? styles.selected : null,
@@ -14,7 +14,7 @@ const CellData = ({ id, selected, value, handleSelection }) => {
     >
       <span className={styles.cell_data__anchor} />
       {value}
-    </td>
+    </div>
   )
 }
 
