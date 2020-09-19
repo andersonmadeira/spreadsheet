@@ -2,16 +2,21 @@ import React, { useEffect, useRef, useState } from 'react'
 import classnames from 'classnames'
 import styles from '../styles/CellData.module.scss'
 
-const CellData = ({ id, selected, handleSelection }) => {
+const CellData = ({
+  id,
+  selected,
+  inEditionMode,
+  handleBlur,
+  handleSelection,
+}) => {
   const [cellValue, setCellValue] = useState('')
-  const [isInEditionMode, setIsInEditionMode] = useState(false)
   const inputRef = useRef()
 
   useEffect(() => {
-    if (isInEditionMode && inputRef.current) {
+    if (inEditionMode && inputRef.current) {
       inputRef.current.focus()
     }
-  }, [isInEditionMode])
+  }, [inEditionMode])
 
   return (
     <div
@@ -21,22 +26,15 @@ const CellData = ({ id, selected, handleSelection }) => {
       )}
       role="presentation"
       onClick={() => handleSelection(id)}
-      onDoubleClick={() => {
-        setIsInEditionMode(!isInEditionMode)
-      }}
     >
-      {isInEditionMode ? (
+      {inEditionMode ? (
         <input
           ref={inputRef}
           style={{ width: '100%' }}
           className={styles.value_editor}
           value={cellValue}
           onChange={(event) => setCellValue(event.target.value)}
-          onBlur={() => setIsInEditionMode(false)}
-          onKeyUp={(e) => {
-            if (e.key === 'Escape' || e.key === 'Enter')
-              setIsInEditionMode(false)
-          }}
+          onBlur={() => handleBlur(id)}
         />
       ) : (
         <span className={styles.value_viewer}>{cellValue}</span>

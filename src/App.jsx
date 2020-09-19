@@ -5,7 +5,7 @@ import styles from './styles/App.module.scss'
 function App() {
   return (
     <div className={styles.app}>
-      <Sheet lines={50} columns={10} />
+      <Sheet lines={1000} columns={26} />
     </div>
   )
 }
